@@ -1,0 +1,70 @@
+.container {
+    display: flex;
+    position: relative;
+}
+
+.sidebar {
+    background-color: rgb(255, 209, 95);
+    height: 100%;
+    width: 100px;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3px;
+    z-index: 1;
+}
+
+.menu {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    border-bottom: 2px solid white;
+}
+.menu a {
+    color: rgb(15, 44, 89);
+    text-decoration: none;
+    font-size: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* ทำให้ไอคอน+ข้อความอยู่ตรงกลางจริง ๆ */
+    text-align: center;
+    height: 100%; /* ช่วยให้ flex ขยายเต็มพื้นที่ li */
+    width: 100%;
+}
+li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 90px; /* คงที่ */
+    width: 100px;  /* คงที่ */
+    box-sizing: border-box;
+    position: relative;
+    border-top: 2px solid white;
+}
+li:hover::before {
+    content: "";
+    position: absolute;
+    width: 80px;
+    height: 70px;
+    border: 2px solid white;
+    border-radius: 10px;
+    background-color: #fefefe;
+    z-index: -1;
+    color: #FFD15F;
+}
+i{
+    padding: 5px;
+}
+.fa-solid {
+    font-size: 30px;
+}
+.logo {
+    width: 96px;
+    height: 96px;
+    margin-bottom: 5px; 
+    margin-right: 9px;
+}

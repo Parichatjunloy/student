@@ -100,7 +100,7 @@ const Dropdown = ({ options, value, onChange, placeholder, disabled, error }) =>
 };
 
 // Main component
-function Manageadmin() {
+function Dmanagea() {
   // ใช้ useMemo เพื่อป้องกันการสร้าง array ใหม่ทุกครั้งที่ render
   const allApplicants = useMemo(() => [
     {
@@ -204,6 +204,16 @@ function Manageadmin() {
   return (
     <>
       <Sidebaradmin />
+      <div className="w-[500px] h-[200px] bg-white absolute inset-0 z-20 mt-47 ml-138 rounded-2xl">
+          <div className="w-[300px] text-center ml-24 mt-5">
+            <p className="font-bold text-[30px] leading-12">คุณต้องการลบหลักสูตรนี้ใช่หรือไม่</p>
+          </div>
+          <div className="flex gap-5 ml-22.5 mt-5">
+            <Link to= "/Manageadmin"><button className="border-[#FFD15F] border-2 w-[150px] h-[40px] rounded-xl font-bold cursor-pointer">ย้อนกลับ</button></Link>
+            <Link to= "/Manageadmin"><button className="bg-[#FFD15F] w-[150px] h-[40px] rounded-xl font-bold cursor-pointer text-white">ยืนยัน</button></Link>
+          </div>
+      </div>
+      <div className="fixed inset-0 bg-black/40 z-10"></div>
       <div className="bg-blue-950 w-[1411px] h-[150px] absolute top-0 left-25 rounded-b-4xl">
         <p className="text-white text-[45px] font-bold text-center mt-3.5">
           จัดการใบสมัคร
@@ -358,7 +368,7 @@ function Manageadmin() {
                         {applicant.status}
                       </button>
                     </td>
-                    <td className="pl-5 border-b-1 text-[#519DD8]" style={{ borderColor: "rgba(0,0,0,0.2)" }}><i className="fa-solid fa-eye" style={{ fontSize: "20px" }}></i><Link to="/Dmanagea"><i className="fa-solid fa-pen ml-2 text-gray-400" style={{ fontSize: "20px" }}></i></Link></td>
+                    <td className="pl-5 border-b-1 text-[#519DD8]" style={{ borderColor: "rgba(0,0,0,0.2)" }}><i className="fa-solid fa-eye" style={{ fontSize: "20px" }}></i><i className="fa-solid fa-pen ml-2 text-gray-400" style={{ fontSize: "20px" }}></i></td>
                   </tr>
                 ))}
               </tbody>
@@ -381,4 +391,4 @@ function Manageadmin() {
   );
 }
 
-export default Manageadmin;
+export default Dmanagea;

@@ -23,6 +23,7 @@ import Pvcvichit from "./pages/Pvcvichit";
 import Manageadmin from "./pages/Manageadmin";
 import Manageuse from "./pages/Manageuse";
 import Dmanageu from "./pages/Dmanageu";
+import Dmanagea from "./pages/Dmanagea";
 
 const App = createBrowserRouter([
   {
@@ -149,6 +150,11 @@ const App = createBrowserRouter([
     index: true, 
     path: "/Dmanageu",
     element: <Dmanageu />,
+  },
+  {
+    index: true, 
+    path: "/Dmanagea",
+    element: <Dmanagea />,
   }
   
 ]);

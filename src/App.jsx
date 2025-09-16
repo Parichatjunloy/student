@@ -21,6 +21,8 @@ import Pvcfear from "./pages/Pvcfear";
 import Pvcaahan from "./pages/Pvcaahan";
 import Pvcvichit from "./pages/Pvcvichit";
 import Manageadmin from "./pages/Manageadmin";
+import Manageuse from "./pages/Manageuse";
+import Dmanageu from "./pages/Dmanageu";
 
 const App = createBrowserRouter([
   {
@@ -137,6 +139,16 @@ const App = createBrowserRouter([
     index: true, 
     path: "/Manageadmin",
     element: <Manageadmin />,
+  },
+  {
+    index: true, 
+    path: "/Manageuse",
+    element: <Manageuse />,
+  },
+  {
+    index: true, 
+    path: "/Dmanageu",
+    element: <Dmanageu />,
   }
   
 ]);

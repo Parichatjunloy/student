@@ -37,13 +37,13 @@ export default function Sidebaradmin() {
               </a>
             </li>
             <li>
-              <a href="#">
+              <a href="/Manageuse">
                 <i class="fa-solid fa-user-gear"></i>
                 <b> จัดการผู้ใช้งาน</b>
               </a>
             </li>
             <li>
-              <a href="/คู่มือการใช้งานเว็บไซต์.pdf" target="_blank" rel="noopener noreferrer">
+              <a href="/คู่มือการใช้งานเว็บไซต์(แอดมิน).pdf" target="_blank" rel="noopener noreferrer">
                 <i className="fa-solid fa-book"></i>
                 <b> คู่มือการใช้งาน</b>
               </a>

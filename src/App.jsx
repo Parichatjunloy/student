@@ -24,6 +24,7 @@ import Manageadmin from "./pages/Manageadmin";
 import Manageuse from "./pages/Manageuse";
 import Dmanageu from "./pages/Dmanageu";
 import Dmanagea from "./pages/Dmanagea";
+import Ditelmanage from "./pages/Ditelmanage";
 
 const App = createBrowserRouter([
   {
@@ -155,6 +156,11 @@ const App = createBrowserRouter([
     index: true, 
     path: "/Dmanagea",
     element: <Dmanagea />,
+  },
+  {
+    index: true, 
+    path: "/Ditelmanage",
+    element: <Ditelmanage />,
   }
   
 ]);

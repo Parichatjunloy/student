@@ -100,7 +100,7 @@ const Dropdown = ({ options, value, onChange, placeholder, disabled, error }) =>
 };
 
 // Main component
-function Manageadmin() {
+function Ditelmanage() {
   // ใช้ useMemo เพื่อป้องกันการสร้าง array ใหม่ทุกครั้งที่ render
   const allApplicants = useMemo(() => [
     {
@@ -204,6 +204,53 @@ function Manageadmin() {
   return (
     <>
       <Sidebaradmin />
+      <div className="w-[650px] h-[570px] bg-white absolute inset-0 z-20 mt-30 ml-120 rounded-2xl">
+          
+        <div className="border-b-2 border-gray-300 flex h-[70px]">
+            <p className="font-bold text-[20px] ml-10 mt-5">ข้อมูลผู้สมัคร</p>
+            <Link to= "/Manageadmin"><i className="fa-solid fa-xmark text-[#FFD15F] ml-108 mt-4.5"></i></Link>
+        </div>
+        <div className="bg-[#F2F2F2] w-[580px] h-[200px] ml-9 mt-5 rounded-xl">
+            <div className="flex">
+            <div className="ml-8 pt-8">
+                <p className="text-[#767676]">รหัสผู้สมัคร</p>
+                <p>1-2345-67890-12-3</p>
+            </div>
+            <div className="ml-40 pt-8">
+                <p className="text-[#767676]">วันที่สมัคร</p>
+                <p>17/02/2568 11:56</p>
+            </div>
+            </div>
+            <div className="flex">
+            <div className="ml-8 pt-8">
+                <p className="text-[#767676]">ชื่อผู้สมัคร</p>
+                <p>กิตติศักดิ์ สมานคุณณารักษา</p>
+            </div>
+            <div className="ml-30 pt-8">
+                <p className="text-[#767676]">รอบการสมัคร</p>
+                <p>รอบปกติ</p>
+            </div>
+            </div>
+        </div>
+
+        <div className="bg-[#F2F2F2] w-[580px] h-[120px] ml-9 mt-5 rounded-xl">
+            <p className="font-bold text-[18px] ml-8 pt-3">สถานะ</p>
+            <div className="flex gap-3 ml-8 pt-5">
+                <p className="bg-[#96e2f7] text-[#00ADDC] w-[100px] text-center h-[30px] pt-0.5 rounded-xl">รอตรวจสอบ</p>
+                <p className="border-2 border-[#FBD37B] text-[#805800] bg-white w-[100px] text-center h-[30px] pt-0.5 rounded-xl">รอสัมภาษณ์</p>
+                <p className="border-2 border-[#E6CCF8] text-[#8300DB] bg-white w-[100px] text-center h-[30px] pt-0.5 rounded-xl">รอชำระเงิน</p>
+                <p className="border-2 border-[#7BE488] text-[#008B10] bg-white w-[100px] text-center h-[30px] pt-0.5 rounded-xl">อนุมัติแล้ว</p>
+            </div>
+        </div>
+        <div className="mt-4 text-right mr-8">
+            <Link to= "/Dmanagea"><i className="fa-solid fa-trash-can text-red-600"style={{ fontSize: "25px" }}></i></Link>
+          </div>
+          <div className="flex gap-5 mt-3 h-[100px] border-t-2 border-gray-300">
+            <Link to= "/Manageadmin"><button className="border-[#FFD15F] border-2 w-[150px] h-[40px] rounded-xl font-bold cursor-pointer mt-4.5 ml-40">ย้อนกลับ</button></Link>
+            <Link to= "/Manageadmin"><button className="bg-[#FFD15F] w-[150px] h-[40px] rounded-xl font-bold cursor-pointer text-white mt-4.5">บันทึก</button></Link>
+          </div>
+      </div>
+      <div className="fixed inset-0 bg-black/40 z-10"></div>
       <div className="bg-blue-950 w-[1411px] h-[150px] absolute top-0 left-25 rounded-b-4xl">
         <p className="text-white text-[45px] font-bold text-center mt-3.5">
           จัดการใบสมัคร
@@ -358,7 +405,7 @@ function Manageadmin() {
                         {applicant.status}
                       </button>
                     </td>
-                    <td className="pl-5 border-b-1 text-[#519DD8]" style={{ borderColor: "rgba(0,0,0,0.2)" }}><i className="fa-solid fa-eye" style={{ fontSize: "20px" }}></i><Link to="/Ditelmanage"><i className="fa-solid fa-pen ml-2 text-gray-400" style={{ fontSize: "20px" }}></i></Link></td>
+                    <td className="pl-5 border-b-1 text-[#519DD8]" style={{ borderColor: "rgba(0,0,0,0.2)" }}><i className="fa-solid fa-eye" style={{ fontSize: "20px" }}></i><i className="fa-solid fa-pen ml-2 text-gray-400" style={{ fontSize: "20px" }}></i></td>
                   </tr>
                 ))}
               </tbody>
@@ -381,4 +428,4 @@ function Manageadmin() {
   );
 }
 
-export default Manageadmin;
+export default Ditelmanage;

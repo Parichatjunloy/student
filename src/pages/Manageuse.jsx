@@ -32,6 +32,9 @@ const Pagination = ({ totalPages, currentPage, onPageChange }) => {
 
 function Manageuse() {
   const [currentPage, setCurrentPage] = useState(1);
+  // เพิ่ม state ใหม่สำหรับเก็บค่าค้นหา
+  const [searchTerm, setSearchTerm] = useState("");
+  
   const totalUsers = 1250;
   const usersPerPage = 10;
   // คำนวณ totalPages ตามปกติ
@@ -90,12 +93,17 @@ function Manageuse() {
     },
   ];
 
-  // ส่วนนี้ใช้เพื่อแสดงข้อมูลในตารางตามหน้าปัจจุบัน (หากต้องการให้ Pagination ทำงานจริง)
-  // แต่ถ้าต้องการแค่แสดง 1-5 คงที่ ก็ไม่ต้องใช้ส่วนนี้
+  // กรองข้อมูลผู้ใช้ตามค่าที่ค้นหาและแปลงให้เป็นตัวพิมพ์เล็กเพื่อไม่ให้การค้นหามีความละเอียดเกินไป
+  const filteredUsers = sampleUsers.filter(user =>
+    user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    user.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    user.email.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+  
   const indexOfLastUser = currentPage * usersPerPage;
   const indexOfFirstUser = indexOfLastUser - usersPerPage;
-  const currentUsers = sampleUsers.slice(indexOfFirstUser, indexOfLastUser);
-
+  // ใช้ filteredUsers แทน sampleUsers เพื่อให้ข้อมูลที่แสดงเป็นข้อมูลที่ถูกกรองแล้ว
+  const currentUsers = filteredUsers.slice(indexOfFirstUser, indexOfLastUser);
 
   return (
     <>
@@ -111,12 +119,15 @@ function Manageuse() {
                 <p className="font-bold text-[20px] ml-6 pt-5 text-blue-950">รายชื่อผู้ใช้งาน</p>
               </div>
               <div className="flex items-center bg-gray-100 rounded-xl w-[300px] ml-[750px] mt-4 px-3 py-2">
+                {/* แก้ไข input เพื่อให้มีการอัปเดต state เมื่อผู้ใช้พิมพ์ */}
                 <input
                   type="text"
                   placeholder="ค้นหา..."
                   className="bg-gray-100 ml-2 outline-none w-full text-sm"
+                  value={searchTerm} // ผูกค่า input กับ state searchTerm
+                  onChange={(e) => setSearchTerm(e.target.value)} // อัปเดต state เมื่อค่าเปลี่ยน
                 />
-                <i className="fa-solid fa-magnifying_glass text-gray-500" style={{ fontSize: "15px" }}></i>
+                <i className="fa-solid fa-magnifying-glass text-gray-500" style={{ fontSize: "15px" }}></i>
               </div>
             </div>
             <div className="overflow-y-auto max-h-[480px]">

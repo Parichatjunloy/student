@@ -285,6 +285,7 @@ const Stepthree = ({ formData, setFormData, handleChange, errors }) => {
           value={formData.telFa}
           onChange={(e) => handleChange(e.target.name, e.target.value)}
           className={`${inputClass} ${errors.telFa ? "border-red-500" : "border-gray-400"}`}
+          maxLength="10"
         />
         {errors.telFa && <p className="text-red-500 text-sm">{errors.telFa}</p>}
       </div>
@@ -414,6 +415,7 @@ const Stepthree = ({ formData, setFormData, handleChange, errors }) => {
           value={formData.telMa}
           onChange={(e) => handleChange(e.target.name, e.target.value)}
           className={`${inputClass} ${errors.telMa ? "border-red-500" : "border-gray-400"}`}
+          maxLength="10"
         />
         {errors.telMa && <p className="text-red-500 text-sm">{errors.telMa}</p>}
       </div>
@@ -556,6 +558,7 @@ const Stepthree = ({ formData, setFormData, handleChange, errors }) => {
             className={`${inputClass} ${errors.homeIDParent ? "border-red-500" : "border-gray-400"}`}
           />
           {errors.homeIDParent && <p className="text-red-500 text-sm">{errors.homeIDParent}</p>}
+          <p className="text-red-500 text-[11px] pt-1">* เลขรหัสประจำบ้าน สามารถดูได้ในสมุดทะเบียน ที่หน้าแรก ทางด้านบนฝั่งซ้ายของสมุด</p>
         </div>
       </div>
 
@@ -640,6 +643,7 @@ const Stepthree = ({ formData, setFormData, handleChange, errors }) => {
           value={formData.telGuardian}
           onChange={(e) => handleChange(e.target.name, e.target.value)}
           className={`${inputClass} ${errors.telGuardian ? "border-red-500" : "border-gray-400"}`}
+          maxLength="10"
         />
         {errors.telGuardian && <p className="text-red-500 text-sm">{errors.telGuardian}</p>}
       </div>
@@ -771,6 +775,7 @@ const Stepthree = ({ formData, setFormData, handleChange, errors }) => {
             className={`${inputClass} ${errors.homeIDGuardian ? "border-red-500" : "border-gray-400"}`}
           />
           {errors.homeIDGuardian && <p className="text-red-500 text-sm">{errors.homeIDGuardian}</p>}
+          <p className="text-red-500 text-[11px] pt-1">* เลขรหัสประจำบ้าน สามารถดูได้ในสมุดทะเบียน ที่หน้าแรก ทางด้านบนฝั่งซ้ายของสมุด</p>
         </div>
       </div>
     </div>

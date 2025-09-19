@@ -19,12 +19,6 @@ export default function Sidebaradmin() {
               </a>
             </li>
             <li>
-              <a href="/Loginadmin">
-                <i className="fa-solid fa-user"></i>
-                <b> เข้าสู่ระบบ</b>
-              </a>
-            </li>
-            <li>
               <a href="/Courseadmin">
                 <i class="fa-solid fa-graduation-cap"></i>
                 <b> หลักสูตร</b>
@@ -42,10 +36,16 @@ export default function Sidebaradmin() {
                 <b> จัดการผู้ใช้งาน</b>
               </a>
             </li>
-            <li>
+            <li className="border-b-2 border-white">
               <a href="/คู่มือการใช้งานเว็บไซต์(แอดมิน).pdf" target="_blank" rel="noopener noreferrer">
                 <i className="fa-solid fa-book"></i>
                 <b> คู่มือการใช้งาน</b>
+              </a>
+            </li>
+            <li className="mt-23">
+              <a href="/Home">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <b> ออกจากระบบ</b>
               </a>
             </li>
           </ul>

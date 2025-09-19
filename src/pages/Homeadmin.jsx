@@ -1,4 +1,5 @@
 import Sidebaradmin from "../components/Sidebaradmin";
+import { Link } from "react-router-dom";
 
 function Homeadmin() {
   return (
@@ -54,7 +55,7 @@ function Homeadmin() {
         <div className="table-section mt-3 w-[1230px] ml-10 bg-white pl-10 pt-3 pr-10" style={{ borderRadius: '10px', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
             <h2 className="text-blue-950 font-bold">รายชื่อหลักสูตรสาขาวิชา</h2>
-            <button className="text-blue-950 font-medium underline ">ดูทั้งหมด</button>
+            <button className="text-blue-950 font-medium underline "><Link to="/Courseadmin">ดูทั้งหมด</Link></button>
           </div>
           <table className="-mt-3" style={{ width: '100%', borderCollapse: 'collapse' }}>
             <thead>

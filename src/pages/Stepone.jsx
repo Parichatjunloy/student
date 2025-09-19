@@ -255,7 +255,7 @@ function Stepone({ formData, setFormData, handleChange, errors }) {
           <div>
             <label className="block mb-1 text-blue-950 font-bold w-[185px]">ศาสนา <span className="text-red-500">*</span></label>
             <Dropdown
-              options={["พุทธ", "คริสต์", "อิสลาม", "ฮินดู"]}
+              options={["พุทธ", "คริสต์", "อิสลาม", "ฮินดู", "ไม่ระบุ"]}
               value={formData.religion}
               onChange={(val) => handleChange("religion", val)}
               placeholder="-- เลือก --"
@@ -266,7 +266,7 @@ function Stepone({ formData, setFormData, handleChange, errors }) {
           <div>
             <label className="block mb-1 text-blue-950 font-bold w-[185px]">หมู่เลือด <span className="text-red-500">*</span></label>
             <Dropdown
-              options={["A", "B", "O", "AB"]}
+              options={["A", "B", "O", "AB", "หมู่เลือดพิเศษ", "ไม่ทราบ"]}
               value={formData.bloodType}
               onChange={(val) => handleChange("bloodType", val)}
               placeholder="-- เลือก --"
@@ -402,6 +402,7 @@ function Stepone({ formData, setFormData, handleChange, errors }) {
             value={formData.stuphone}
             onChange={(e) => handleChange(e.target.name, e.target.value)}
             className={`w-full p-2 border-2 rounded-lg text-sm ${errors.stuphone ? "border-red-500" : "border-gray-400"}`}
+            maxLength="10"
           />
           {errors.stuphone && <p className="text-red-500 text-sm">{errors.stuphone}</p>}
         </div>
@@ -553,6 +554,7 @@ function Stepone({ formData, setFormData, handleChange, errors }) {
             className={`w-full p-2 border-2 rounded-lg text-sm ${errors.stuHousenumber ? "border-red-500" : "border-gray-400"}`}
           />
           {errors.stuHousenumber && <p className="text-red-500 text-sm">{errors.stuHousenumber}</p>}
+          <p className="text-red-500 text-[11px] pt-1">* เลขรหัสประจำบ้าน สามารถดูได้ในสมุดทะเบียน ที่หน้าแรก ทางด้านบนฝั่งซ้ายของสมุด</p>
         </div>
 
         <div className="flex items-center space-x-2 text-blue-950 col-span-2 mt-4">
@@ -675,6 +677,7 @@ function Stepone({ formData, setFormData, handleChange, errors }) {
             className={`w-full p-2 border-2 rounded-lg text-sm ${errors.stusimhousenumber ? "border-red-500" : "border-gray-400"}`}
           />
           {errors.stusimhousenumber && <p className="text-red-500 text-sm">{errors.stusimhousenumber}</p>}
+          <p className="text-red-500 text-[11px] pt-1">* เลขรหัสประจำบ้าน สามารถดูได้ในสมุดทะเบียน ที่หน้าแรก ทางด้านบนฝั่งซ้ายของสมุด</p>
         </div>
 
         <div className="flex items-center space-x-2 text-blue-950 col-span-2">

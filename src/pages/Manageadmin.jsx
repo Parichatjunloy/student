@@ -3,54 +3,6 @@ import Sidebaradmin from "../components/Sidebaradmin";
 import { Link } from "react-router-dom";
 
 // Dropdown component (Integrated)
-const Pagination = ({ totalPages, currentPage, onPageChange }) => {
-  return (
-    <div className="flex justify-end mt-6 mr-6 space-x-2">
-      {/* ปุ่มย้อนกลับ */}
-      <button
-        onClick={() => onPageChange(currentPage - 1)}
-        disabled={currentPage === 1}
-        className={`flex items-center justify-center w-8 h-8 border rounded ${
-          currentPage === 1
-            ? "text-gray-400 border-gray-200 bg-gray-100 cursor-not-allowed"
-            : "hover:bg-gray-100"
-        }`}
-      >
-        {"<"} {/* แทนที่ ChevronLeft ด้วยสัญลักษณ์ */}
-      </button>
-
-      {/* เลขหน้า */}
-      {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-        <button
-          key={page}
-          onClick={() => onPageChange(page)}
-          className={`w-8 h-8 border rounded flex items-center justify-center ${
-            currentPage === page
-              ? "bg-yellow-400 text-white border-yellow-400"
-              : "hover:bg-gray-100"
-          }`}
-        >
-          {page}
-        </button>
-      ))}
-
-      {/* ปุ่มไปข้างหน้า */}
-      <button
-        onClick={() => onPageChange(currentPage + 1)}
-        disabled={currentPage === totalPages}
-        className={`flex items-center justify-center w-8 h-8 border rounded ${
-          currentPage === totalPages
-            ? "text-gray-400 border-gray-200 bg-gray-100 cursor-not-allowed"
-            : "hover:bg-gray-100"
-        }`}
-      >
-        {">"} {/* แทนที่ ChevronRight ด้วยสัญลักษณ์ */}
-      </button>
-    </div>
-  );
-};
-
-// Dropdown component (เดิม)
 const Dropdown = ({ options, value, onChange, placeholder, disabled, error }) => {
   const [open, setOpen] = useState(false);
   const ref = useRef(null);
@@ -101,7 +53,7 @@ const Dropdown = ({ options, value, onChange, placeholder, disabled, error }) =>
 
 // Main component
 function Manageadmin() {
-  // ใช้ useMemo เพื่อป้องกันการสร้าง array ใหม่ทุกครั้งที่ render
+  // Use useMemo to prevent the array from being recreated on every render
   const allApplicants = useMemo(() => [
     {
       id: "REP-2568-0001",
@@ -114,92 +66,112 @@ function Manageadmin() {
       id: "REP-2568-0002",
       name: "นางสาวสมศรี มีสุข",
       round: "รอบปกติ 1",
-      date: "16/07/2568 11.56",
+      date: "17/07/2568 11.56",
       status: "รอตรวจสอบ",
     },
     {
       id: "REP-2568-0003",
       name: "นายวิชัย สุขสันต์",
       round: "รอบปกติ 1",
-      date: "16/07/2568 11.56",
+      date: "18/07/2568 11.56",
       status: "รอตรวจสอบ",
     },
     {
       id: "REP-2568-0004",
       name: "นางสาวนภา ดาวเด่น",
       round: "รอบปกติ 2",
-      date: "16/07/2568 11.56",
+      date: "19/07/2568 11.56",
       status: "รอสัมภาษณ์",
     },
     {
       id: "REP-2568-0005",
       name: "นายธนา รักเรียน",
       round: "รอบปกติ 2",
-      date: "16/07/2568 11.56",
+      date: "20/07/2568 11.56",
       status: "รอสัมภาษณ์",
     },
     {
       id: "REP-2568-0006",
       name: "นางสาวสมหญิง รักเรียน",
       round: "รอบปกติ 3",
-      date: "16/07/2568 11.56",
+      date: "21/07/2568 11.56",
       status: "แก้ไขแล้ว",
     },
     {
       id: "REP-2568-0007",
       name: "นายวิชัย เรียนดี",
       round: "รอบปกติ 3",
-      date: "16/07/2568 11.56",
+      date: "22/07/2568 11.56",
       status: "รอสัมภาษณ์",
     },
     {
       id: "REP-2568-0008",
       name: "นางสาวนภา ดาวเด่น",
       round: "รอบโควต้า",
-      date: "16/07/2568 11.56",
+      date: "23/07/2568 11.56",
       status: "แก้ไขแล้ว",
     },
     {
       id: "REP-2568-0009",
       name: "นายธนา มั่งมี",
       round: "รอบโควต้า",
-      date: "16/07/2568 11.56",
+      date: "24/07/2568 11.56",
       status: "อนุมัติแล้ว",
     },
     {
       id: "REP-2568-0010",
       name: "นายสมพงศ์ ปลงทุกเรื่อง",
       round: "รอบโควต้า",
-      date: "16/07/2568 11.56",
+      date: "25/07/2568 11.56",
       status: "อนุมัติแล้ว",
     },
-  ], []); // empty dependency array หมายความว่า array นี้จะถูกสร้างเพียงครั้งเดียว
+  ], []); // empty dependency array means this array will be created only once
 
-  const [formData, setFormData] = useState({ round: "", statusmanage: "", samang: "" });
+  const [formData, setFormData] = useState({ round: "", statusmanage: "", startDate: "", endDate: "" });
+  const [searchTerm, setSearchTerm] = useState(""); // 1. เพิ่ม state สำหรับการค้นหา
   const [filteredApplicants, setFilteredApplicants] = useState(allApplicants);
   const [errors] = useState({});
-  const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = 5;
 
-  // ฟังก์ชันสำหรับรีเซ็ตการกรอง
+  // Function to reset filtering
   const handleReset = () => {
-    setFormData({ round: "", statusmanage: "", samang: "" });
+    setFormData({ round: "", statusmanage: "", startDate: "", endDate: "" });
+    setSearchTerm(""); // Reset ค่าsearchTerm ด้วย
     setFilteredApplicants(allApplicants);
   };
 
   const handleChange = (field, value) => {
     setFormData((prevData) => ({ ...prevData, [field]: value }));
   };
-  
-  // เพิ่ม allApplicants ใน dependency array
+
+  // 2. เพิ่ม handler สำหรับการเปลี่ยนแปลงในช่องค้นหา
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
   useEffect(() => {
     const newFilteredApplicants = allApplicants.filter((applicant) => {
       const matchRound = formData.round === "" || applicant.round === formData.round;
       const matchStatus = formData.statusmanage === "" || formData.statusmanage === "สถานะทั้งหมด" || applicant.status === formData.statusmanage;
-      return matchRound && matchStatus;
+      
+      // Split the date string and convert to YYYY-MM-DD format for proper Date object creation
+      const [day, month, beYear] = applicant.date.split(' ')[0].split('/');
+      const ceYear = parseInt(beYear) - 543;
+      const applicantDate = new Date(`${ceYear}-${month}-${day}`);
+      
+      const startDate = formData.startDate ? new Date(formData.startDate) : null;
+      const endDate = formData.endDate ? new Date(formData.endDate) : null;
+      
+      const matchDate = (!startDate || applicantDate >= startDate) && (!endDate || applicantDate <= endDate);
+
+      // 3. เพิ่มเงื่อนไขการค้นหา
+      const matchSearch = searchTerm === "" || 
+                          applicant.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                          applicant.id.toLowerCase().includes(searchTerm.toLowerCase());
+
+      return matchRound && matchStatus && matchDate && matchSearch;
     });
     setFilteredApplicants(newFilteredApplicants);
-  }, [formData, allApplicants]); // เพิ่ม allApplicants ใน dependency array ที่นี่
+  }, [formData, searchTerm, allApplicants]); // 4. เพิ่ม searchTerm ใน dependency array
 
   return (
     <>
@@ -211,7 +183,7 @@ function Manageadmin() {
       </div>
       <div className="bg-[#FFD15F] w-[1300px] h-[840px] absolute top-26 left-40 rounded-xl mb-10">
         <div className="flex gap-5 mt-5 ml-10 mr-10">
-            {/* ... (โค้ดส่วนบน) ... */}
+            {/* ... (Code for top section) ... */}
             <div className="bg-white w-[230px] h-[100px] rounded-xl flex">
                 <div>
                     <p className="font-bold opacity-50 mt-3 ml-5 text-[18px]">ผู้สมัครทั้งหมด</p>
@@ -267,6 +239,8 @@ function Manageadmin() {
               <input
                 type="text"
                 placeholder="ค้นหา..."
+                value={searchTerm} // 5. เชื่อมต่อ state searchTerm
+                onChange={handleSearchChange} // 6. เชื่อมต่อ handler
                 className="bg-gray-100 ml-2 outline-none w-full text-sm"
               />
               <i className="fa-solid fa-magnifying-glass text-gray-500" style={{ fontSize: "15px" }}></i>
@@ -292,20 +266,23 @@ function Manageadmin() {
               />
             </div>
             <div className="w-[150px] ml-6 mt-4">
-              <input type="date" className="bg-[#E6E6E6] w-[150px] h-[50px] rounded-xl pl-2 pr-2" />
-            </div>
-            <div className="w-[150px] ml-6 mt-4">
-              <Dropdown
-                options={["สมัครวันนี้", "สมัครเดือนนี้", "สมัครปีนี้", "สมัครทั้งหมด"]}
-                value={formData.samang}
-                onChange={(val) => handleChange("samang", val)}
-                placeholder="การสมัคร"
-                error={errors.samang}
+              <input
+                type="date"
+                value={formData.startDate}
+                onChange={(e) => handleChange("startDate", e.target.value)}
+                className="bg-[#E6E6E6] w-[150px] h-[50px] rounded-xl pl-2 pr-2"
               />
             </div>
-            <button
-              className="bg-[#FFD15F] h-[40px] w-[100px] mt-5.5 ml-5 text-left text-white rounded-xl "
-            >
+            <div className="ml-5 mt-8"><p className="font-bold">ถึง</p></div>
+            <div className="w-[150px] ml-6 mt-4">
+              <input
+                type="date"
+                value={formData.endDate}
+                onChange={(e) => handleChange("endDate", e.target.value)}
+                className="bg-[#E6E6E6] w-[150px] h-[50px] rounded-xl pl-2 pr-2"
+              />
+            </div>
+            <button className="bg-[#FFD15F] h-[40px] w-[100px] mt-5.5 ml-5 text-left text-white rounded-xl ">
               <i className="fa-solid fa-filter ml-3.5 mr-2" style={{ fontSize: "20px" }}></i>กรอง
             </button>
             <button
@@ -314,7 +291,7 @@ function Manageadmin() {
             >
               <i className="fa-solid fa-arrows-rotate ml-3.5 mr-2" style={{ fontSize: "20px" }}></i>รีเซ็ต
             </button>
-            <input type="text" value={`จำนวนผู้สมัคร ${filteredApplicants.length}`} className="border-1 border-gray-300 h-[40px] text-center rounded-xl mt-5.5 ml-23"/>
+            <input type="text" value={`จำนวนผู้สมัคร ${filteredApplicants.length}`} className="border-1 border-gray-300 h-[40px] text-center rounded-xl mt-5.5 mr-7 ml-14" readOnly/>
           </div>
 
           <div className="overflow-y-auto max-h-[480px]">
@@ -365,17 +342,7 @@ function Manageadmin() {
             </table>
           </div>
         </div>
-        {/* ส่วนของ pagination และจำนวนรายการที่ถูกย้ายออกมา */}
-        <div className="-mt-19 mr-10">
-        <Pagination 
-            totalPages={totalPages}
-            currentPage={currentPage}
-            onPageChange={setCurrentPage}
-        />
-        </div>
-        <div className="ml-17 -mt-5">
-            <p className="text-[#828282] text-[14px]">แสดงจาก 1-{filteredApplicants.length} จาก 1,250 รายการ</p>
-        </div>
+        
       </div>
     </>
   );
